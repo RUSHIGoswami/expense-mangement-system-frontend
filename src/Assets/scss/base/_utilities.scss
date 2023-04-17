@@ -9,6 +9,10 @@
   display: none;
 }
 
+.error {
+  color: $danger-color;
+}
+
 // Flex utility classes
 .flex {
   display: flex;

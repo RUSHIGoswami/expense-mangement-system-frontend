@@ -1,6 +1,5 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { ToastContainer, toast } from "react-toastify";
 
 const Loginform = () => {
   // Initializing react-hook-form for validation
@@ -17,42 +16,42 @@ const Loginform = () => {
 
   //Function for handling login form submission
   const handleLogin = e => {
-    toast.success(`Cheers!!!`);
+    console.log("Cheers!!!");
+    console.log(e.email);
   };
   return (
     <>
       <form className="login-form" onSubmit={handleSubmit(handleLogin)}>
         <h2>LOGIN FORM</h2>
-        <input
-          type="email"
-          placeholder="Enter your email"
-          name="email"
-          {...register("email", {
-            required: true,
-            pattern: { value: emailRegex },
-          })}
-        />
-        <input
-          type="password"
-          placeholder="Enter your password"
-          name="password"
-          {...register("password", {
-            required: true,
-            pattern: { value: passwordRegex },
-          })}
-        />
+        <div>
+          <input
+            type="email"
+            placeholder="Enter your email"
+            name="email"
+            {...register("email", {
+              required: true,
+              pattern: { value: emailRegex },
+            })}
+          />
+          <span className="error">
+            {errors.email && "Invalid email address"}
+          </span>
+        </div>
+        <div>
+          <input
+            type="password"
+            placeholder="Enter your password"
+            name="password"
+            {...register("password", {
+              required: true,
+              pattern: { value: passwordRegex },
+            })}
+          />
+          <span className="error">{errors.password && "Invalid Password"}</span>
+        </div>
         <button type="submit">Login</button>
       </form>
-      <div className="hidden">
-        {errors.email && toast.error("Buddy!! enter valid email address")}
-        {errors.password && toast.error("Buddy!! password format is wrong")}
-      </div>
-      <ToastContainer
-        theme="colored"
-        autoClose={2000}
-        pauseOnHover={false}
-        closeButton={false}
-      />
+      <div className="hidden"></div>
     </>
   );
 };
