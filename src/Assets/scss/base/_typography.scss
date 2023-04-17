@@ -1,0 +1,50 @@
+// _typography.scss
+
+// Import variables
+@import "../abstracts/variables";
+
+// Set default font family and size for the body
+body {
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  text-align: center;
+}
+
+// Set basic styles for headings
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-family-heading;
+}
+
+// Set font sizes and line heights
+h1 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 2rem;
+  line-height: 1.4;
+}
+
+h3 {
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+
+p {
+  line-height: $line-height-base;
+}
+
+button {
+  font-size: $font-size-base;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-family: $font-family-text;
+}
