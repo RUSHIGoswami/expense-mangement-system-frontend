@@ -1,5 +1,7 @@
+import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const Loginform = () => {
   // Initializing react-hook-form for validation
@@ -14,10 +16,30 @@ const Loginform = () => {
   const passwordRegex =
     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,16}$/;
 
+  const customConfig = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const navigator = useNavigate();
   //Function for handling login form submission
-  const handleLogin = e => {
-    console.log("Cheers!!!");
-    console.log(e.email);
+  const handleLogin = async e => {
+    const userLogin = JSON.stringify({
+      userNameOrEmailAddress: e.email,
+      password: e.password,
+    });
+
+    try {
+      const logging = await axios.post(
+        "https://localhost:44329/api/account/login",
+        userLogin,
+        customConfig
+      );
+      console.log(logging);
+      navigator("/", { replace: true });
+    } catch (err) {
+      console.error(err);
+    }
   };
   return (
     <>
