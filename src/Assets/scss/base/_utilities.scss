@@ -1,0 +1,62 @@
+// _utilities.scss
+
+// Import variables and mixins
+@import "../abstracts/variables";
+@import "../abstracts/mixins";
+
+// Visibility utility classes
+.hidden {
+  display: none;
+}
+
+.error {
+  color: $danger-color;
+}
+
+// Flex utility classes
+.flex {
+  display: flex;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.align-center {
+  align-items: center;
+}
+
+// Grid utility classes
+
+.grid {
+  display: grid;
+}
+
+// Border utility class
+.border {
+  border: 1px solid $primary-color;
+}
+
+.fadeIn {
+  @include keyframes(fadeIn) {
+    from {
+      opacity: 0;
+      transform: translateY(0);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(10px);
+    }
+  }
+
+  animation: fadeIn 0.5s cubic-bezier(1, 0.02, 0.61, 1.29);
+}

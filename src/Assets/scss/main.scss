@@ -1,0 +1,16 @@
+// Import Variables
+@import "abstracts/variables";
+
+// Import Mixins
+@import "abstracts/mixins";
+
+// Import Base
+@import "base/base";
+@import "base/typography";
+@import "base/utilities";
+
+// Import Pages
+@import "./pages/auth";
+
+// Import toast notifications
+@import "react-toastify/dist/ReactToastify.css";

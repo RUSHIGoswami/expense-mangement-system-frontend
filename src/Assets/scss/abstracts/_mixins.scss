@@ -1,0 +1,66 @@
+// Media Query Mixins
+$breakpoint-xs: 576px;
+$breakpoint-sm: 768px;
+$breakpoint-md: 992px;
+$breakpoint-lg: 1280px;
+
+@mixin media-breakpoint-up($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-down($breakpoint) {
+  @media (max-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-between($breakpoint-min, $breakpoint-max) {
+  @media (min-width: $breakpoint-min) and (max-width: $breakpoint-max) {
+    @content;
+  }
+}
+
+// Utility Mixins
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin padding($top, $right: $top, $bottom: $top, $left: $top) {
+  padding: $top $right $bottom $left;
+}
+
+@mixin margin($top, $right: $top, $bottom: $top, $left: $top) {
+  margin: $top $right $bottom $left;
+}
+
+@mixin text-truncate() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin box-shadow($x, $y, $blur, $spread, $color: #000) {
+  box-shadow: $x $y $blur $spread $color;
+}
+
+// Animation Mixins
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+// Function to lighten or darken a color by a percentage
+@function lighten($color, $amount) {
+  @return mix(white, $color, $amount);
+}
+
+@function darken($color, $amount) {
+  @return mix(black, $color, $amount);
+}
