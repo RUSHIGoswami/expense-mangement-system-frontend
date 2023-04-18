@@ -1,9 +1,18 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { LOGIN_SUCCESS } from "../../Redux/userReducer";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
 const Loginform = () => {
+  // State for handling invalid username of password
+  const [invalid, setInvalid] = useState("");
+  // Initializing hook for dispatch action
+  const dispatch = useDispatch();
+
+  // Initializing hook for navigation
+  const navigate = useNavigate();
+
   // Initializing react-hook-form for validation
   const {
     register,
@@ -16,14 +25,16 @@ const Loginform = () => {
   const passwordRegex =
     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,16}$/;
 
+  // API content type config
   const customConfig = {
     headers: {
       "Content-Type": "application/json",
     },
   };
-  const navigator = useNavigate();
-  //Function for handling login form submission
+
+  // Function for handling login form submission
   const handleLogin = async e => {
+    const userNameOrEmail = e.email;
     const userLogin = JSON.stringify({
       userNameOrEmailAddress: e.email,
       password: e.password,
@@ -35,8 +46,20 @@ const Loginform = () => {
         userLogin,
         customConfig
       );
-      console.log(logging);
-      navigator("/", { replace: true });
+
+      if (logging.data.result === 1) {
+        dispatch({
+          type: LOGIN_SUCCESS,
+          payload: { userNameOrEmail },
+        });
+
+        sessionStorage.setItem("isAuthenticated", true);
+        sessionStorage.setItem("Username", userNameOrEmail);
+        console.log(sessionStorage.getItem("isAuthenticated"));
+        navigate("/");
+      } else {
+        setInvalid(logging.data.description);
+      }
     } catch (err) {
       console.error(err);
     }
@@ -44,6 +67,7 @@ const Loginform = () => {
   return (
     <>
       <form className="login-form" onSubmit={handleSubmit(handleLogin)}>
+        <span className="error">{invalid}</span>
         <h2>LOGIN FORM</h2>
         <div>
           <input
@@ -55,6 +79,7 @@ const Loginform = () => {
               pattern: { value: emailRegex },
             })}
           />
+          <br />
           <span className="error">
             {errors.email && "Invalid email address"}
           </span>
@@ -69,6 +94,7 @@ const Loginform = () => {
               pattern: { value: passwordRegex },
             })}
           />
+          <br />
           <span className="error">{errors.password && "Invalid Password"}</span>
         </div>
         <button type="submit">Login</button>

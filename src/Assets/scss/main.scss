@@ -9,8 +9,8 @@
 @import "base/typography";
 @import "base/utilities";
 
+// import Components
+@import "./components/ui/navbar";
+
 // Import Pages
 @import "./pages/auth";
-
-// Import toast notifications
-@import "react-toastify/dist/ReactToastify.css";
