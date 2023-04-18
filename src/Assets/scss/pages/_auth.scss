@@ -1,185 +1,214 @@
-.container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  background: $light-color;
-  @include size(calc(100% - 10em));
+.auth {
+  width: 100%;
+  height: 100%;
+  color: $dark-color;
+  background-image: linear-gradient(
+    45deg,
+    hsl(240deg 100% 27%) 0%,
+    hsl(258deg 100% 29%) 12%,
+    hsl(267deg 100% 30%) 27%,
+    hsl(273deg 100% 32%) 42%,
+    hsl(278deg 100% 33%) 56%,
+    hsl(283deg 100% 35%) 68%,
+    hsl(287deg 100% 37%) 78%,
+    hsl(290, 100%, 38%) 86%,
+    hsl(294, 100%, 40%) 93%,
+    hsl(296, 99%, 41%) 97%,
+    hsl(299, 96%, 44%) 100%
+  );
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: $light-color;
+    @include size(calc(100% - 10em));
 
-  @media (max-width: 1280px) {
-    grid-template-columns: 0.5fr 1fr;
-  }
-
-  @media (max-width: 992px) {
-    grid-template-columns: 0 1fr;
-    height: auto;
-    width: calc(100% - 4em);
-    padding: 20px;
-  }
-
-  .image-container {
-    background: url("../../images/purple.jpg") center/cover no-repeat;
-    color: $light-color;
-
-    h2 {
-      margin-top: 10%;
-      text-shadow: 0 0 3px $light-color;
+    @media (max-width: 1280px) {
+      grid-template-columns: 0.5fr 1fr;
     }
-  }
 
-  .auth-forms {
-    position: relative;
-    overflow: hidden;
-
-    .form-btns {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      @include size(calc(100% - 40em), 60px);
-      border: 1px solid $dark-color;
-      border-radius: 20px;
-      margin: 10% auto 0;
-
-      @media (max-width: 992px) {
-        width: calc(100% - 25em);
-        margin-top: 4em;
-      }
-      @media (max-width: 540px) {
-        width: 90%;
-        height: 50px;
-      }
-
-      button {
-        @include size(100%);
-        font-size: 22px;
-        border: none;
-        outline: none;
-        background-color: transparent;
-        position: relative;
-        cursor: pointer;
-
-        @media (max-width: 992px) {
-          font-size: 16 px;
-        }
-      }
+    @media (max-width: 992px) {
+      grid-template-columns: 0 1fr;
+      height: auto;
+      width: calc(100% - 4em);
+      padding: 20px;
     }
-    .slider {
-      height: 60px;
-      width: calc(40% - 14.5em);
-      border-radius: 20px;
-      background-image: linear-gradient(to right, #d804dc, #a718c4);
-      position: absolute;
-      top: 5.5em;
-      left: 36.5%;
-      transition: all 0.5s ease-in-out;
 
-      @media (max-width: 992px) {
-        width: calc(40% - 7.5em);
-        top: 4em;
-        left: 12em;
-      }
+    .image-container {
+      background: url("../../images/purple.jpg") center/cover no-repeat;
+      color: $light-color;
 
-      @media (max-width: 540px) {
-        width: 45%;
-        height: 50px;
-        left: 14px;
+      h2 {
+        margin-top: 10%;
+        text-shadow: 0 0 3px $light-color;
       }
     }
 
-    .form-section {
-      height: calc(100% - 20em);
-      width: calc(100% - 10em);
-      padding: 20px 0;
-      display: flex;
+    .auth-forms {
       position: relative;
-      transition: all 0.5s ease-in-out;
-      left: 0px;
+      overflow: hidden;
 
-      @media (max-width: 992px) {
-        height: calc(100% - 10em);
-        width: 2000px;
-      }
-
-      @media (max-width: 540px) {
-        width: 1190px;
-      }
-      .login-form,
-      .signup-form {
+      .form-btns {
         display: flex;
-        flex-direction: column;
+        justify-content: space-around;
         align-items: center;
-        justify-content: center;
-        margin: 0 15.5em;
+        @include size(calc(100% - 40em), 60px);
+        border: 1px solid $dark-color;
+        border-radius: 20px;
+        margin: 10% auto 0;
 
         @media (max-width: 992px) {
-          width: 30%;
-          padding: 0;
-          margin: 0 16em 0 3em;
+          width: calc(100% - 25em);
+          margin-top: 4em;
         }
-
         @media (max-width: 540px) {
-          margin: 0;
-          width: 25%;
-        }
-        input {
-          height: 60px;
-          width: 400px;
-          outline: none;
-          border: 1px solid lighten($dark-color, 70%);
-          color: $dark-color;
-          border-radius: 20px;
-          padding-left: 30px;
-          font-size: 22px;
-          transition: all 0.3s ease;
-
-          &:focus {
-            @include box-shadow(1px, 1px, 10px, 1px, lighten(#d804dc, 40%));
-            border-color: lighten(#d804dc, 40%);
-          }
-          @media (max-width: 992px) {
-            width: calc(100% - 4em);
-          }
-
-          @media (max-width: 540px) {
-            font-size: 16px;
-            height: 50px;
-            border-radius: 15px;
-          }
+          width: 60%;
+          height: 30px;
+          border-radius: 10px;
         }
 
         button {
-          height: 60px;
-          width: 400px;
-          border-radius: 20px;
-          background: #d804dc;
-          color: $light-color;
+          @include size(100%);
           font-size: 22px;
           border: none;
+          outline: none;
+          background-color: transparent;
+          position: relative;
           cursor: pointer;
-
-          &:hover {
-            background: darken(#d804dc, 10%);
-          }
-
-          @media (max-width: 992px) {
-            width: calc(100% - 4em);
-          }
 
           @media (max-width: 540px) {
             font-size: 16px;
-            height: 50px;
-            letter-spacing: 5px;
-            border-radius: 15px;
           }
         }
       }
+      .slider {
+        height: 60px;
+        width: calc(40% - 14.5em);
+        border-radius: 20px;
+        background-image: linear-gradient(to right, #d804dc, #a718c4);
+        position: absolute;
+        top: 5.5em;
+        left: 36.5%;
+        transition: all 0.5s ease-in-out;
 
-      .login-form {
-        gap: 50px;
-      }
-      .signup-form {
-        gap: 30px;
+        @media (max-width: 992px) {
+          width: calc(40% - 7.5em);
+          top: 4em;
+          left: 12em;
+        }
 
         @media (max-width: 540px) {
-          margin-left: 38em;
+          width: 30%;
+          height: 30px;
+          left: 3.5em;
+          border-radius: 10px;
+        }
+      }
+
+      .form-section {
+        height: calc(100% - 20em);
+        width: calc(100% - 10em);
+        padding: 20px 0;
+        display: flex;
+        position: relative;
+        transition: all 0.5s ease-in-out;
+        left: 0px;
+
+        @media (max-width: 992px) {
+          height: calc(100% - 8em);
+          width: 2000px;
+        }
+
+        @media (max-width: 540px) {
+          width: 1190px;
+          height: calc(100% - 5em);
+          margin: 0;
+
+          h2 {
+            font-size: 1.5em;
+          }
+        }
+        .login-form,
+        .signup-form {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          margin: 0 15.5em;
+
+          @media (max-width: 992px) {
+            width: 30%;
+            padding: 0;
+            margin: 0 16em 0 3em;
+          }
+
+          @media (max-width: 540px) {
+            margin: 0;
+            padding: 0;
+            width: 25%;
+          }
+          input {
+            height: 60px;
+            width: 400px;
+            outline: none;
+            border: 1px solid lighten($dark-color, 70%);
+            color: $dark-color;
+            border-radius: 20px;
+            padding-left: 30px;
+            font-size: 22px;
+            transition: all 0.3s ease;
+
+            &:focus {
+              @include box-shadow(1px, 1px, 10px, 1px, lighten(#d804dc, 40%));
+              border-color: lighten(#d804dc, 40%);
+            }
+
+            @media (max-width: 540px) {
+              font-size: 16px;
+              height: 40px;
+              width: fit-content;
+              border-radius: 15px;
+              padding-left: 20px;
+            }
+          }
+
+          button {
+            height: 60px;
+            width: 400px;
+            border-radius: 20px;
+            background: #d804dc;
+            color: $light-color;
+            font-size: 22px;
+            border: none;
+            cursor: pointer;
+
+            &:hover {
+              background: darken(#d804dc, 10%);
+            }
+
+            @media (max-width: 540px) {
+              font-size: 16px;
+              height: 40px;
+              width: 80%;
+              letter-spacing: 5px;
+              border-radius: 15px;
+            }
+          }
+        }
+
+        .login-form {
+          gap: 50px;
+        }
+        .signup-form {
+          gap: 30px;
+
+          @media (max-width: 540px) {
+            margin-left: 38em;
+          }
         }
       }
     }

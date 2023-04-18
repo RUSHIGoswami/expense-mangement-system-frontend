@@ -1,19 +1,10 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import Dashboard from "../../Pages/Dashboard/Dashboard";
 
-const PrivateRoute = ({ component: Component, isAuthenticated, ...rest }) => {
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        isAuthenticated ? (
-          <Component {...props} />
-        ) : (
-          <Redirect to={{ pathname: "/auth" }} />
-        )
-      }
-    />
-  );
+const PrivateRoute = () => {
+  const isAuthenticated = sessionStorage.getItem("isAuthenticated");
+  return isAuthenticated ? <Dashboard /> : <Navigate to="/auth" />;
 };
 
 export default PrivateRoute;

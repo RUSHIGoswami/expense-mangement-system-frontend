@@ -17,23 +17,25 @@ const Auth = () => {
   !slide &&
     (invertColorProp = { color: "#fff", transition: "color 0.9s ease" });
   return (
-    <div className="container">
-      <div className="image-container">
-        <h2>Welcome to Split wisely</h2>
-      </div>
-      <div className="auth-forms">
-        <div className={"slider"} style={slideProp}></div>
-        <div className="form-btns">
-          <button onClick={() => setSlide(false)} style={invertColorProp}>
-            Login
-          </button>
-          <button onClick={() => setSlide(true)} style={colorProp}>
-            Sign up
-          </button>
+    <div className="auth">
+      <div className="container">
+        <div className="image-container">
+          <h2>Welcome to Split wisely</h2>
         </div>
-        <div className="form-section" style={formSlideProp}>
-          <Loginform />
-          <Signupform />
+        <div className="auth-forms">
+          <div className={"slider"} style={slideProp}></div>
+          <div className="form-btns">
+            <button onClick={() => setSlide(false)} style={invertColorProp}>
+              Login
+            </button>
+            <button onClick={() => setSlide(true)} style={colorProp}>
+              Sign up
+            </button>
+          </div>
+          <div className="form-section" style={formSlideProp}>
+            <Loginform />
+            <Signupform />
+          </div>
         </div>
       </div>
     </div>
