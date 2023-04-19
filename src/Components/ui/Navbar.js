@@ -1,11 +1,24 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = ({ username }) => {
+  const [toggle, setToggle] = useState(false);
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    const loggingOut = await axios.get(
+      "https://localhost:44329/api/account/logout"
+    );
+    if (loggingOut.status === 204) {
+      sessionStorage.removeItem("isAuthenticated");
+      sessionStorage.removeItem("Username");
+      navigate("/auth");
+    }
+  };
   return (
     <nav>
       <h3>Welcome {username}</h3>
-      <button className="hamburger">
+      <button className="hamburger" onClick={() => setToggle(!toggle)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="h-5 w-5"
@@ -19,13 +32,16 @@ const Navbar = ({ username }) => {
           />
         </svg>
       </button>
-      <div className="navigation-menu">
+      <div className={toggle ? "navigation-menu expanded" : "navigation-menu"}>
         <ul>
+          <li>
+            <Link>Add friend</Link>
+          </li>
           <li>
             <Link to="/groups">Groups</Link>
           </li>
           <li>
-            <Link>Logout</Link>
+            <Link onClick={handleLogout}>Logout</Link>
           </li>
         </ul>
       </div>

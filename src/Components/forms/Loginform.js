@@ -23,7 +23,7 @@ const Loginform = () => {
   // Regex for validation before submitting form
   const emailRegex = /^\S+@\S+\.\S+$/;
   const passwordRegex =
-    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,16}$/;
+    /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{6,16}$/;
 
   // API content type config
   const customConfig = {
@@ -44,7 +44,9 @@ const Loginform = () => {
       const logging = await axios.post(
         "https://localhost:44329/api/account/login",
         userLogin,
-        customConfig
+        customConfig,
+        { withCredentials: true,
+        exposedHeaders: true }
       );
 
       if (logging.data.result === 1) {
@@ -55,8 +57,18 @@ const Loginform = () => {
 
         sessionStorage.setItem("isAuthenticated", true);
         sessionStorage.setItem("Username", userNameOrEmail);
-        console.log(sessionStorage.getItem("isAuthenticated"));
-        navigate("/");
+        console.log(logging.headers["set-cookie"]);
+        const loggedUser = await axios
+          .get("https://localhost:44329/api/account/my-profile", {
+            headers: { "Content-Type": "application/json" },
+          })
+          .then(response => {
+            console.log(response.data);
+          })
+          .catch(error => {
+            console.log(error);
+          });
+        // navigate("/");
       } else {
         setInvalid(logging.data.description);
       }

@@ -1,17 +1,10 @@
 import React from "react";
-import { useGlobalContext } from "./context";
-const Modal = () => {
-  const { isModalOpen, closeModal } = useGlobalContext();
+const Modal = ({ open }) => {
+  if (!open) return null;
+
   return (
-    <div
-      className={`${
-        isModalOpen ? "modal-overlay show-modal" : "modal-overlay"
-      }`}
-    >
-      <div className="modal-container">
-        <h3>modal content</h3>
-        <button className="close-modal-btn" onClick={closeModal}></button>
-      </div>
+    <div className="overlay">
+      <div className="modalContainer">Modal</div>
     </div>
   );
 };
