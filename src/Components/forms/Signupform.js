@@ -44,7 +44,7 @@ const Signupform = () => {
       sessionStorage.setItem("isAuthenticated", true);
       sessionStorage.setItem("Username", userName);
       console.log(sessionStorage.getItem("isAuthenticated"));
-      navigate("/auth");
+      navigate("/");
     } catch (err) {
       setExist("User already exist!!!");
     }
